@@ -1,5 +1,6 @@
 // Dependencies
 const express = require('express');
+const exphbs = require('express-handlebars');
 ////////////////////////////////////////////////////////////////////////////////
 var app = express();
 
@@ -8,20 +9,21 @@ const port = process.env.PORT || 3000;
 ////////////////////////////////////////////////////////////////////////////////
 
 // Middleware
-
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 ////////////////////////////////////////////////////////////////////////////////
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Home');
+  res.render('index');
 });
 
 app.get('/about', (req, res) => {
-  res.send('About');
+  res.render('about');
 });
 
 app.get('/projects', (req, res) => {
-  res.send('Projects');
+  res.render('projects');
 });
 ////////////////////////////////////////////////////////////////////////////////
 
